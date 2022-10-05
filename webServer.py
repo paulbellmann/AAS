@@ -1,8 +1,9 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
-from pydub import AudioSegment
-from pydub.playback import play
+from playsound import playsound
+import os
 
 ip_whitelist = [
+    '127.0.0.1',
     '172.30.127.12'
 ]
 
@@ -18,9 +19,8 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(b'Not today, bro!')
             return
         
-        song = AudioSegment.from_mp3("ff_alarm.mp3")
-        play(song)
+        playsound(os.getcwd() + '/sounds/ff_alarm.wav')
 
 
-httpd = HTTPServer(('172.29.28.181', 8000), SimpleHTTPRequestHandler)
+httpd = HTTPServer(('127.0.0.1', 8080), SimpleHTTPRequestHandler)
 httpd.serve_forever()
