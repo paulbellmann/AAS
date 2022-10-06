@@ -26,6 +26,6 @@ def hello_world():
     playsound(ticket_path)
 
     if os.path.isfile(ticket_path):
-      os.remove(ticket_path)
+        os.remove(ticket_path)
 
     return 'Hello World'
